@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523130743) do
+ActiveRecord::Schema.define(:version => 20120804004336) do
 
   create_table "availabilities", :force => true do |t|
     t.integer  "person_id"
@@ -36,22 +35,23 @@ ActiveRecord::Schema.define(:version => 20120523130743) do
   end
 
   create_table "conferences", :force => true do |t|
-    t.string   "acronym",                 :null => false
-    t.string   "title",                   :null => false
-    t.string   "timezone",                :null => false
-    t.integer  "timeslot_duration",       :null => false
-    t.integer  "default_timeslots",       :null => false
-    t.integer  "max_timeslots",           :null => false
-    t.date     "first_day",               :null => false
-    t.date     "last_day",                :null => false
-    t.integer  "feedback_enabled",        :null => false
+    t.string   "acronym",                                    :null => false
+    t.string   "title",                                      :null => false
+    t.string   "timezone",                                   :null => false
+    t.integer  "timeslot_duration",                          :null => false
+    t.integer  "default_timeslots",                          :null => false
+    t.integer  "max_timeslots",                              :null => false
+    t.date     "first_day",                                  :null => false
+    t.date     "last_day",                                   :null => false
+    t.integer  "feedback_enabled",                           :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email"
     t.string   "program_export_base_url"
-    t.integer  "day_start",               :null => false
-    t.integer  "day_end",                 :null => false
+    t.integer  "day_start",                                  :null => false
+    t.integer  "day_end",                                    :null => false
     t.string   "schedule_version"
+    t.boolean  "schedule_public",         :default => false, :null => false
   end
 
   create_table "conflicts", :force => true do |t|
@@ -104,12 +104,12 @@ ActiveRecord::Schema.define(:version => 20120523130743) do
   end
 
   create_table "events", :force => true do |t|
-    t.integer  "conference_id",                        :null => false
-    t.string   "title",                                :null => false
+    t.integer  "conference_id",         :null => false
+    t.string   "title",                 :null => false
     t.string   "subtitle"
     t.string   "event_type"
     t.integer  "time_slots"
-    t.string   "state",                                :null => false
+    t.string   "state",                 :null => false
     t.string   "language"
     t.datetime "start_time"
     t.text     "abstract"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(:version => 20120523130743) do
     t.text     "note"
     t.text     "submission_note"
     t.integer  "speaker_count"
-    t.integer  "event_feedbacks_count", :default => 0
+    t.integer  "event_feedbacks_count"
     t.float    "average_feedback"
   end
 
@@ -166,10 +166,10 @@ ActiveRecord::Schema.define(:version => 20120523130743) do
   end
 
   create_table "people", :force => true do |t|
-    t.string   "first_name",          :null => false
-    t.string   "last_name",           :null => false
-    t.string   "public_name"
-    t.string   "email",               :null => false
+    t.string   "first_name",          :default => ""
+    t.string   "last_name",           :default => ""
+    t.string   "public_name",         :default => "",    :null => false
+    t.string   "email",                                  :null => false
     t.integer  "email_public"
     t.string   "gender"
     t.string   "avatar_file_name"
@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20120523130743) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.text     "note"
+    t.boolean  "include_in_mailings", :default => false, :null => false
   end
 
   create_table "phone_numbers", :force => true do |t|
@@ -248,7 +249,7 @@ ActiveRecord::Schema.define(:version => 20120523130743) do
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count", :default => 0
+    t.integer  "sign_in_count"
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"

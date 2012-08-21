@@ -42,7 +42,7 @@ end
 
 group :development do
   gem 'hpricot'
-  gem 'yaml_db'
+  gem 'yaml_db', :git => 'git://github.com/lostapathy/yaml_db.git'
   gem 'shotgun'
 end
 
