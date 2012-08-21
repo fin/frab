@@ -84,6 +84,15 @@ div.event {
   padding: 3px;
 }
 
+.events_2 div.event {
+  width: 65px;
+  overflow: hidden;
+}
+
+.events_2 div.event:nth-child(2) {
+  margin-left: 80px;
+}
+
 div.event.fatal {
   background: #EE3333;
 }

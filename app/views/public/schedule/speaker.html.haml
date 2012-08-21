@@ -18,7 +18,7 @@
         %li= link_to link.title, link.url
 
 .column.right#sidebar
-  %h3 Events in this conference
+  %h3 Events
   %table.list
     %tbody
       - @speaker.public_and_accepted_events_as_speaker_in(@conference).each do |event|

@@ -15,7 +15,6 @@ update_unscheduled_events = (track_id = "") ->
 
 add_event_to_slot = (event, td, update = true) ->
   event = $(event)
-  td = $(td)
   event.data("slot", td)
   td.append($(event))
   update_event_position(event)
@@ -30,6 +29,11 @@ add_event_to_slot = (event, td, update = true) ->
       success: ->
         event.effect('highlight')
     )
+  eventno = $(td).find('div.event').length;
+  for i in [0..eventno]
+    if $(td).hasClass('events_'+i)
+      td.removeClass('events_'+i)
+  td.addClass('events_'+eventno)
 
 make_draggable = (element) ->
   element.draggable(revert: "invalid", opacity: 0.4, cursorAt: {left: 5, top: 5})

@@ -81,6 +81,7 @@ class User < ActiveRecord::Base
 
   def record_login!
     self.last_sign_in_at = Time.now
+    self.sign_in_count |= 0
     self.sign_in_count += 1
     save(:validate => false)
   end
